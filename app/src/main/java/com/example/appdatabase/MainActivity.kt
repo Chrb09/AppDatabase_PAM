@@ -8,16 +8,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,8 +22,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -45,18 +42,28 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun App(){
+    var nome by remember{
+        mutableStateOf("")
+    }
+    var telefone by remember{
+        mutableStateOf("")
+    }
     Column(
         Modifier
             .fillMaxSize()
-            .padding(16.dp)
-            .wrapContentSize(Alignment.Center),
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Row(
+            Modifier
+                .padding(20.dp)){
+        }
         Row(
             Modifier.padding(20.dp)
         ) {
             Text(
                 text = "App Database",
+                fontFamily = FontFamily.Monospace,
                 fontSize = 26.sp,
                 fontWeight = Bold,
             )
@@ -64,14 +71,22 @@ fun App(){
         Row(
             Modifier.padding(8.dp)
         ) {
-            TextField("Nome:")
+            OutlinedTextField(
+                value = nome,
+                onValueChange = { nome = it },
+                label = { Text("Nome: ")}
+            )
         }
         Row(
             Modifier.padding(8.dp)
         ) {
-            TextField("Idade:")
+            OutlinedTextField(
+                value = telefone,
+                onValueChange = { telefone = it },
+                label = { Text("Telefone: ")}
+            )
         }
-        Row(){
+        Row{
             Spacer(modifier = Modifier.height(20.dp))
         }
         Row(
@@ -84,24 +99,19 @@ fun App(){
                     fontWeight = Bold,
                 )
             }
-            Spacer(modifier = Modifier.height(150.dp))
+
+
+
+        }
+        Row(
+            Modifier
+                .padding(20.dp)){
         }
     }
 
 
 }
-@Composable
-fun TextField(labelValue: String) {
-    var text by remember { mutableStateOf(TextFieldValue("")) }
-    OutlinedTextField(
-        value = text,
-        onValueChange = {
-            text = it
-        },
-        label = { Text(text = labelValue) },
-        placeholder = { Text(text = labelValue) },
-    )
-}
+
 @Composable
 @Preview
 fun AppPreview() {
