@@ -1,1 +1,2 @@
-![image](https://github.com/user-attachments/assets/475bfe6c-09c2-4bbd-b0f9-eee74d7e7901)
+<img src="https://github.com/Chrb09/AppDatabase_PAM/blob/main/app.png" width="300">
+<img src="https://github.com/Chrb09/AppDatabase_PAM/blob/main/db.png" width="300">
